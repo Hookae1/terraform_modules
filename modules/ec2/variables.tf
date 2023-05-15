@@ -24,7 +24,7 @@ variable "maintainer" {
 ### =================================== ###
 ###     Specific variable for module    ###
 ### =================================== ###
-variable "app" {
+variable "app_name" {
   description = "Name of application"
   type        = string
 }
