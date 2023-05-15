@@ -12,7 +12,7 @@ module "ec2" {
   vpc_security_group_ids      = [data.aws_security_group.ssh.id, data.aws_security_group.web.id, data.aws_security_group.web.id]
   associate_public_ip_address = true
   ebs_optimized               = false
-  iam_instance_profile        = aws_iam_instance_profile.ec2.name
+  iam_instance_profile        = data.aws_iam_instance_profile.iam_profile.role_name
   key_name                    = aws_key_pair.ec2.key_name
   user_data                   = null
   disable_api_termination     = false
