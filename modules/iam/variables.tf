@@ -25,3 +25,23 @@ variable "maintainer" {
 ###     Specific variable for module    ###
 ### =================================== ###
 
+variable "admin_team" {
+  description = "List of users with Admin Privileges"
+  type        = list(any)
+  default     = []
+}
+variable "dev_power_team" {
+  description = "List of users with Power Development Privileges"
+  type        = list(any)
+  default     = []
+}
+variable "dev_minimal_team" {
+  description = "List of users with Minial Development Privileges"
+  type        = list(any)
+  default     = []
+}
+variable "readonly_team" {
+  description = "List of users with Read Only Privileges"
+  type        = list(any)
+  default     = []
+}

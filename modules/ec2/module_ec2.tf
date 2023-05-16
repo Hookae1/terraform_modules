@@ -8,11 +8,11 @@ module "ec2" {
   ami                         = var.ec2_default_ami #https://cloud-images.ubuntu.com/locator/ec2/ Jammy Jellyfish - Ubuntu 22.04 - arm64
   instance_type               = var.ec2_instance_type
   cpu_credits                 = var.ec2_cpu_credits
-  subnet_id                   = data.aws_subnet.selected_public.id
+  subnet_id                   = data.aws_subnets.selected_public.ids[0]
   vpc_security_group_ids      = [data.aws_security_group.ssh.id, data.aws_security_group.web.id, data.aws_security_group.web.id]
   associate_public_ip_address = true
   ebs_optimized               = false
-  iam_instance_profile        = data.aws_iam_instance_profile.iam_profile.role_name
+  iam_instance_profile        = data.aws_iam_instance_profile.iam_profile.name
   key_name                    = aws_key_pair.ec2.key_name
   user_data                   = null
   disable_api_termination     = false

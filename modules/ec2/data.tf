@@ -16,10 +16,10 @@ data "aws_subnets" "selected_private" {
   }
 }
 
-data "aws_subnet" "selected_public" {
+data "aws_subnets" "selected_public" {
   filter {
     name   = "tag:Name"
-    values = ["${local.pre-fix}-vpc-public-${var.region_id}-2a"]
+    values = ["${local.pre-fix}-vpc-public-${var.region_id}*"]
   }
 }
 
