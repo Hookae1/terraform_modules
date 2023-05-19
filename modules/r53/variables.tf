@@ -20,3 +20,17 @@ variable "maintainer" {
   description = "Email of Person Responsible for Project Infrastructure"
   type        = string
 }
+
+### =================================== ###
+###     Specific variable for module    ###
+### =================================== ###
+
+variable "domain" {
+  description = "Domain name"
+  type        = string
+}
+
+variable "public_ip" {
+  description = "Elastic IP of EC2 server"
+  type        = string
+}

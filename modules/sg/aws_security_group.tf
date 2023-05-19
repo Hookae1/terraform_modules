@@ -2,7 +2,7 @@
 resource "aws_security_group" "ssh" {
   name_prefix = "ssh-${var.env_id}-SG"
   description = "Allow SSH inbound traffic"
-  vpc_id      = data.aws_vpc.selected.id
+  vpc_id      = var.vpc_id
 
   dynamic "ingress" {
     for_each = var.ssh_trusted_ips
@@ -118,8 +118,8 @@ resource "aws_security_group" "mon" {
 }
 
 ### --- DB Security Group --- ###
-resource "aws_security_group" "db" {
-  name_prefix = "db-${var.env_id}-SG"
+resource "aws_security_group" "data" {
+  name_prefix = "data-${var.env_id}-SG"
   description = "Allow Connect to Postges and Redis"
   vpc_id      = data.aws_vpc.selected.id
 
@@ -130,20 +130,7 @@ resource "aws_security_group" "db" {
     protocol        = "tcp"
     to_port         = 5432
   }
-
-  tags = {
-    Name = "db-${var.env_id}-SG"
-    App  = "Backend"
-    Role = "Firewall"
-  }
-}
-
-### --- Redis Security Group --- ###
-resource "aws_security_group" "redis" {
-  name_prefix = "redis-${var.env_id}-SG"
-  description = "Allow Connect to Redis"
-  vpc_id      = data.aws_vpc.selected.id
-
+  
   ingress {
     security_groups = [aws_security_group.ssh.id]
     description     = "Allow COAX trusted IP"
@@ -160,8 +147,8 @@ resource "aws_security_group" "redis" {
   }
 
   tags = {
-    Name = "redis-${var.env_id}-SG"
-    App  = "Backend"
+    Name = "data-${var.env_id}-SG"
+    App  = "Data"
     Role = "Firewall"
   }
 }

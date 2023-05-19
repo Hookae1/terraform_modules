@@ -1,5 +1,5 @@
 ### =================================== ###
-###          General variables          ###
+###           Global variables          ###
 ### =================================== ###
 variable "region_id" {
   description = "Region"
@@ -34,4 +34,13 @@ variable "mon_trusted_ips" {
   description = "Monitoring Servers IPs"
   type        = map(any)
   default     = { COAX-Prom = ["165.22.93.23/32"] }
+}
+
+### =================================== ###
+###          Inherited variables        ###
+### =================================== ###
+
+variable "vpc_id" {
+  description = "The ID of the VPC"
+  type        = string
 }

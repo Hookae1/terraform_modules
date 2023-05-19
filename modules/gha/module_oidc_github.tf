@@ -14,9 +14,7 @@ module "aws_oidc_github" {
   ]
 
   github_repositories = [
-    "coaxsoft/bstk_be_api",
-    "coaxsoft/bstk_fe_admin",
-    "coaxsoft/bstk_fe_nextjs"
+    null
   ]
 
   tags = {
