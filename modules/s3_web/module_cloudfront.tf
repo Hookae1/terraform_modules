@@ -1,6 +1,6 @@
 module "cloudfront_app" {
   // https://registry.terraform.io/modules/terraform-aws-modules/cloudfront/aws/latest
-  source  = "terraform-aws-modules/clou dfront/aws"
+  source  = "terraform-aws-modules/cloudfront/aws"
   version = "3.2.1"
 
   create_distribution = true
@@ -26,7 +26,7 @@ module "cloudfront_app" {
   }
 
   logging_config = {
-    bucket = module.log_bucket.s3_bucket_bucket_domain_name
+    bucket = var.s3_logs #module.log_bucket.s3_bucket_bucket_domain_name
     prefix = "cloudfront"
 
   origin = {

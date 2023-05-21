@@ -99,7 +99,7 @@ module "s3_app" {
   ]
 
   tags = {
-    App  = var.app_id
+    App  = "webhosting"
     Role = "S3"
   }
 }
