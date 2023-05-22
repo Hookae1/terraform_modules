@@ -62,6 +62,7 @@ variable "vpc_id" {
 variable "private_subnets" {
   description = "List of IDs of private subnets"
   type        = list(string)
+  default     = [null] 
 }
 
 variable "public_subnets" {
@@ -72,11 +73,13 @@ variable "public_subnets" {
 variable "database_subnets" {
   description = "List of IDs of database subnets"
   type        = list(string)
+  default     = [null] 
 }
 
 variable "elasticache_subnets" {
   description = "List of IDs of elasticache subnets"
   type        = list(string)
+  default     = [null] 
 }
 
 variable "vpc_security_group_ids" {

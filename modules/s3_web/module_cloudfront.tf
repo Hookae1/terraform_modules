@@ -27,7 +27,8 @@ module "cloudfront_app" {
 
   logging_config = {
     bucket = var.s3_logs #module.log_bucket.s3_bucket_bucket_domain_name
-    prefix = "cloudfront"
+      prefix = "cloudfront"
+  }
 
   origin = {
     s3_app = {
@@ -37,7 +38,7 @@ module "cloudfront_app" {
         # cloudfront_access_identity_path = "origin-access-identity/cloudfront/E5IGQAA1QO48Z" # external OAI resource
       }
     }
-    alb_api_redirects = {
+    /* alb_api_redirects = {
       domain_name = "${var.api_domain}"
       custom_origin_config = {
         http_port              = 80
@@ -45,7 +46,7 @@ module "cloudfront_app" {
         origin_protocol_policy = "match-viewer"
         origin_ssl_protocols   = ["TLSv1.2"]
       }
-    }
+    } */
   }
 
   default_cache_behavior = {
@@ -88,7 +89,7 @@ module "cloudfront_app" {
     #}
   }
 
-  ordered_cache_behavior = [
+  /* ordered_cache_behavior = [
     {
       path_pattern           = "api/*"
       target_origin_id       = "alb_api_redirects"
@@ -118,7 +119,7 @@ module "cloudfront_app" {
       origin_request_policy_id = "216adef6-5c7f-47e4-b989-5492eafa07d3"
       use_forwarded_values     = false #? Required if "cache_policy_id" is used. See issue https://github.com/terraform-aws-modules/terraform-aws-cloudfront/pull/21
     }
-  ]
+  ] */
 
   custom_error_response = [
     {
@@ -138,5 +139,4 @@ module "cloudfront_app" {
     acm_certificate_arn = var.acm_certificate_arn
     ssl_support_method  = "sni-only"
   }
-}
 }

@@ -13,7 +13,7 @@ module "acm" {
     var.domain,
   ]
 
-  wait_for_validation = true
+  wait_for_validation = false
 
   tags = {
     Role = "Cert"
@@ -41,7 +41,7 @@ module "acm_global" {
     var.domain,
   ]
 
-  wait_for_validation = true
+  wait_for_validation = false
 
   tags = {
     Role = "Cert"

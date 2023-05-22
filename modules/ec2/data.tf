@@ -36,7 +36,7 @@ data "aws_security_group" "web" {
 
 data "aws_security_group" "data" {
   vpc_id = data.aws_vpc.selected.id
-  name   = "db-${var.env_id}*"
+  name   = "data-${var.env_id}*"
 }
 
 #### ---- Data from IAM module ---- ####

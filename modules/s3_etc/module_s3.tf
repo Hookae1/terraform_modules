@@ -30,8 +30,13 @@ module "s3_logs" {
   version = "3.10.1"
 
   bucket = "${local.s3_logs}"
-  acl    = "public-read"
+  acl    = "log-delivery-write"
   policy = data.aws_iam_policy_document.s3_logs.json
+
+  # Need to add this to avoid retrieve Error - The bucket does not allow ACLs status code: 400
+  # https://github.com/terraform-aws-modules/terraform-aws-s3-bucket/issues/223
+  control_object_ownership = true
+  object_ownership         = "ObjectWriter"
 
   versioning = {
     enabled = false

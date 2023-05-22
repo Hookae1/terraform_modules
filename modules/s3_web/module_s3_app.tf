@@ -75,6 +75,11 @@ module "s3_app" {
   attach_policy = true
   policy        = data.aws_iam_policy_document.bucket_policy.json
 
+  # Need to add this to avoid retrieve Error - The bucket does not allow ACLs status code: 400
+  # https://github.com/terraform-aws-modules/terraform-aws-s3-bucket/issues/223
+  control_object_ownership = true
+  object_ownership         = "ObjectWriter"
+
   # S3 bucket-level Public Access Block configuration
   block_public_acls       = false #true
   block_public_policy     = false
